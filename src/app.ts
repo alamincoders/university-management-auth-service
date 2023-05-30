@@ -1,7 +1,5 @@
-import express, { Application, Request } from 'express'
+import express, { Application, Request, Response } from 'express'
 import cors from 'cors'
-
-console.log('port')
 
 // create app
 const app: Application = express()
