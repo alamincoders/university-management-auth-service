@@ -7,5 +7,5 @@ dotenv.config({ path: path.join(process.cwd(), '.env') })
 export default {
   port: process.env.PORT,
   mongo_uri: process.env.MONGO_URI,
-  default_students_pass: process.env.DEFAULT_STUDENTS_PASS,
+  default_user_pass: process.env.DEFAULT_USER_PASS,
 }
