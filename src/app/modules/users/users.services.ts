@@ -3,6 +3,11 @@ import { UserType } from './users.interface'
 import User from './users.model'
 import { generatedUserId } from './users.utils'
 
+export const getUser = async () => {
+  const user = await User.find({})
+  return user
+}
+
 export const createUser = async (user: UserType): Promise<UserType | null> => {
   // auto generated students id
   const userId = await generatedUserId()
