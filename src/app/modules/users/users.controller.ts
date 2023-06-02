@@ -12,8 +12,8 @@ export const getUserController = async (req: Request, res: Response) => {
 }
 
 export const createdUserController = async (req: Request, res: Response) => {
-  const data = req.body
-  const result = await createUser(data)
+  const { user } = req.body
+  const result = await createUser(user)
 
   res.status(200).json({
     success: true,
