@@ -1,7 +1,7 @@
 import mongoose from 'mongoose'
 import config from './config/index'
 import app from './app'
-import logger from './shared/logger'
+import { errorLogger, logger } from './shared/logger'
 
 const dbConnect = async () => {
   try {
@@ -12,7 +12,7 @@ const dbConnect = async () => {
       logger.info(`Server is running on port ${config.port}`)
     })
   } catch (err) {
-    logger.error('Failed to connect database', err)
+    errorLogger.error('Failed to connect database', err)
   }
 }
 
