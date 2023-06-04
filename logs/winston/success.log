@@ -44,3 +44,27 @@ Sun Jun 04 2023 13:53:47 GMT+0600 (Bangladesh Standard Time) 13:53 [UM!] info: S
 6/4/2023 13:55 [UM!] info: Server is running on port 5000
 6/4/2023 13:56 [UM!] info: Mongodb Connected!
 6/4/2023 13:56 [UM!] info: Server is running on port 5000
+{
+  message: 'Mongodb Connected!',
+  level: 'info',
+  label: 'UM!',
+  timestamp: '2023-06-04T07:57:12.569Z'
+}
+{
+  message: 'Server is running on port 5000',
+  level: 'info',
+  label: 'UM!',
+  timestamp: '2023-06-04T07:57:12.601Z'
+}
+{
+  message: 'Mongodb Connected!',
+  level: 'info',
+  label: 'UM!',
+  timestamp: '2023-06-04T07:57:59.729Z'
+}
+{
+  message: 'Server is running on port 5000',
+  level: 'info',
+  label: 'UM!',
+  timestamp: '2023-06-04T07:57:59.761Z'
+}
