@@ -1,12 +1,14 @@
 import express, { Application, Request, Response } from 'express';
 import cors from 'cors';
 import { router as UserRoutes } from './app/modules/users/users.route';
+import globalErrorHandler from './app/middlewares/globalErrorHandler';
 
 // create app
 const app: Application = express();
 
 // use middleware
 app.use(cors());
+app.use(globalErrorHandler);
 
 // body parser
 app.use(express.json());
