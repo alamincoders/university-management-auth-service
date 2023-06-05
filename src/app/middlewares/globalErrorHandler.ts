@@ -1,16 +1,11 @@
-import { NextFunction, Request, Response } from 'express';
+import { ErrorRequestHandler } from 'express';
 import { IGenericErrorMessage } from '../../interfaces/error';
 import config from '../../config';
 import handleValidationError from '../../errors/ValidationError';
+import ApiError from '../../errors/ApiError';
 
-const globalErrorHandler = (
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  err: any,
-  req: Request,
-  res: Response,
-  next: NextFunction
-) => {
-  let statusCode: number | string = 500;
+const globalErrorHandler: ErrorRequestHandler = (err, req, res, next) => {
+  let statusCode = 500;
   let message = 'something went wrong!';
   let errorMessages: IGenericErrorMessage[] = [];
 
@@ -20,9 +15,16 @@ const globalErrorHandler = (
     statusCode = simplifiedError.statusCode;
     message = simplifiedError.message;
     errorMessages = simplifiedError.errorMessages;
+  } else if (err instanceof ApiError) {
+    statusCode = err?.statusCode;
+    message = err?.message;
+    errorMessages = err?.message ? [{ path: '', message: err?.message }] : [];
+  } else if (err instanceof Error) {
+    message = err?.message;
+    errorMessages = err?.message ? [{ path: '', message: err?.message }] : [];
   }
 
-  res.status(statusCode as number).json({
+  res.status(statusCode).json({
     success: false,
     message,
     errorMessages,
