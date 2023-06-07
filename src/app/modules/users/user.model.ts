@@ -1,9 +1,7 @@
-import { Model, Schema, model } from 'mongoose';
-import { UserType } from './users.interface';
+import { Schema, model } from 'mongoose';
+import { UserModel, UserType } from './user.interfaces';
 
-type UserModel = Model<UserType, object>;
-
-const userSchema = new Schema<UserType, UserModel>(
+const userSchema = new Schema<UserType>(
   {
     id: {
       type: String,

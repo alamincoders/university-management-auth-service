@@ -1,15 +1,14 @@
 import config from '../../../config';
 import ApiError from '../../../errors/ApiError';
-import { UserType } from './users.interface';
-import User from './users.model';
-import { generatedUserId } from './users.utils';
+import { UserType } from './user.interfaces';
+import User from './user.model';
+import { generatedUserId } from './user.utils';
 
-export const getUser = async () => {
+const getUser = async () => {
   const user = await User.find({});
   return user;
 };
-
-export const createUser = async (user: UserType): Promise<UserType | null> => {
+const createUser = async (user: UserType): Promise<UserType | null> => {
   // auto generated students id
   const userId = await generatedUserId();
   user.id = userId;
@@ -26,4 +25,9 @@ export const createUser = async (user: UserType): Promise<UserType | null> => {
   }
 
   return createdUser;
+};
+
+export const UserServices = {
+  getUser,
+  createUser,
 };
