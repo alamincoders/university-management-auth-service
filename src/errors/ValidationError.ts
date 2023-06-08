@@ -1,27 +1,19 @@
-import mongoose, { CastError } from 'mongoose';
-import { IGenericErrorMessage } from '../interfaces/error';
+import mongoose from 'mongoose';
 import { IGenericErrorResponse } from '../interfaces/common';
-
-type MyValidatorError = {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  path: any;
-  message: string;
-};
+import { IGenericErrorMessage } from '../interfaces/error';
 
 const handleValidationError = (
-  err: mongoose.Error.ValidationError
+  error: mongoose.Error.ValidationError
 ): IGenericErrorResponse => {
-  const errors: IGenericErrorMessage[] = Object.values(err?.errors).map(
-    (el: MyValidatorError | CastError) => {
+  const errors: IGenericErrorMessage[] = Object.values(error.errors).map(
+    (el: mongoose.Error.ValidatorError | mongoose.Error.CastError) => {
       return {
         path: el?.path,
         message: el?.message,
       };
     }
   );
-
   const statusCode = 400;
-
   return {
     statusCode,
     message: 'Validation Error',
