@@ -15,7 +15,7 @@ const getUser: RequestHandler = async (req, res, next) => {
   }
 };
 
-const createdUser: RequestHandler = async (req, res, next) => {
+const createUser: RequestHandler = async (req, res, next) => {
   try {
     const user = req.body;
     const result = await UserServices.createUser(user);
@@ -32,5 +32,5 @@ const createdUser: RequestHandler = async (req, res, next) => {
 
 export const UserControllers = {
   getUser,
-  createdUser,
+  createUser,
 };

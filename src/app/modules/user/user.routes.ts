@@ -9,7 +9,7 @@ router.get('/', UserControllers.getUser);
 router.post(
   '/create-user',
   validateRequest(UserValidation.createUserZodSchema),
-  UserControllers.createdUser
+  UserControllers.createUser
 );
 
 export const UserRoutes = router;
