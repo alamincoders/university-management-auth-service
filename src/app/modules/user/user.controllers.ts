@@ -8,14 +8,13 @@ const getUser = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
     const result = await UserServices.getUser();
 
-    next();
-
     sendResponse(res, {
       statusCode: httpStatus.OK,
       success: true,
       message: 'Get All Users Successfully',
       data: result,
     });
+    next();
   }
 );
 
@@ -23,14 +22,13 @@ const createUser: RequestHandler = catchAsync(async (req, res, next) => {
   const user = req.body;
   const result = await UserServices.createUser(user);
 
-  next();
-
   sendResponse(res, {
     statusCode: httpStatus.OK,
     success: true,
     message: 'User Created Successfully',
     data: result,
   });
+  next();
 });
 
 export const UserControllers = {
