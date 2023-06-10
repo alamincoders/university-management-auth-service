@@ -4,6 +4,11 @@ import { errorLogger } from '../../../shared/logger';
 import { academicSemesterTitleCodeMapper } from './academicSemester.constant';
 import { IAcademicSemester } from './academicSemester.interfaces';
 import AcademicSemester from './academicSemester.model';
+import { IPaginationOptions } from '../../../interfaces/pagination';
+
+const getSemesters = (paginationOptions: IPaginationOptions) => {
+  return { paginationOptions };
+};
 
 const createSemester = async (
   payload: IAcademicSemester
@@ -22,4 +27,5 @@ const createSemester = async (
 
 export const AcademicSemesterServices = {
   createSemester,
+  getSemesters,
 };
