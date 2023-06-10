@@ -22,7 +22,10 @@ app.use(express.urlencoded({ extended: true }));
 app.use('/api/v1/academic-semester', AcademicSemesterRoutes); */
 app.use('/api/v1', routes);
 
-// not found middleware use
+/* This code block is a middleware function that handles requests for routes that are not defined in
+the application. It sets the HTTP status code to 404 (Not Found) and returns a JSON response with an
+error message indicating that the requested API is not found. The `next()` function is called to
+pass control to the next middleware function in the stack. */
 app.use((req: Request, res: Response, next: NextFunction) => {
   const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   res.status(httpStatus.NOT_FOUND).json({
