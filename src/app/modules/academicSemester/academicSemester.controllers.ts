@@ -5,31 +5,22 @@ import sendResponse from '../../../shared/sendResponse';
 import httpStatus from 'http-status';
 import pick from '../../../shared/pick';
 import { paginationOptionFields } from '../../../constants/pagination';
+import { IAcademicSemester } from './academicSemester.interfaces';
 
 const getAllSemesters = catchAsync(
   async (req: Request, res: Response, next: NextFunction) => {
-    //
-    // pagination options
-    // const paginationOptions: IPaginationOptions = {
-    //   page: Number(req.query.page),
-    //   limit: Number(req.query.limit),
-    //   sortBy: req.query.sortBy as string,
-    //   sortOrder: req.query.sortOrder as 'asc' | 'dsc',
-    // };
-
-    // paginationOptionFields-------- ["page", "limit", "sortBy", "sortOrder"]
-
     const paginationOptions = pick(req.query, paginationOptionFields);
 
     const result = await AcademicSemesterServices.getSemesters(
       paginationOptions
     );
 
-    sendResponse(res, {
+    sendResponse<IAcademicSemester[]>(res, {
       statusCode: httpStatus.OK,
       success: true,
       message: 'Academic Semester getting Successfully!',
-      data: result,
+      meta: result.meta,
+      data: result.data,
     });
 
     next();
