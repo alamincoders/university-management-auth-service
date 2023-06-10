@@ -1,8 +1,9 @@
-import express, { Application, Request, Response } from 'express';
+import express, { Application, NextFunction, Request, Response } from 'express';
 import cors from 'cors';
 import globalErrorHandler from './app/middlewares/globalErrorHandler';
 
 import routes from './app/routes';
+import httpStatus from 'http-status';
 
 // create app
 const app: Application = express();
@@ -20,6 +21,23 @@ app.use(express.urlencoded({ extended: true }));
 /* app.use('/api/v1/user', UserRoutes);
 app.use('/api/v1/academic-semester', AcademicSemesterRoutes); */
 app.use('/api/v1', routes);
+
+// not found middleware use
+app.use((req: Request, res: Response, next: NextFunction) => {
+  const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
+  res.status(httpStatus.NOT_FOUND).json({
+    statusCode: httpStatus.NOT_FOUND,
+    success: false,
+    message: `Not Found!`,
+    errorMessages: [
+      {
+        path: `${fullUrl}`,
+        message: 'API Not Found!',
+      },
+    ],
+  });
+  next();
+});
 
 // default route
 app.get('/', (req: Request, res: Response) => {
