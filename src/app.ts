@@ -1,50 +1,40 @@
-import express, { Application, NextFunction, Request, Response } from 'express';
 import cors from 'cors';
-import globalErrorHandler from './app/middlewares/globalErrorHandler';
-
-import routes from './app/routes';
+import express, { Application, NextFunction, Request, Response } from 'express';
 import httpStatus from 'http-status';
-
-// create app
+import globalErrorHandler from './app/middlewares/globalErrorHandler';
+import routes from './app/routes';
 const app: Application = express();
 
-// use middleware
 app.use(cors());
-app.use(globalErrorHandler);
 
-// body parser
+//parser
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
-// application routes
+// app.use('/api/v1/users/', UserRoutes);
+// app.use('/api/v1/academic-semesters', AcademicSemesterRoutes);
+app.use('/api/v1/', routes);
 
-/* app.use('/api/v1/user', UserRoutes);
-app.use('/api/v1/academic-semester', AcademicSemesterRoutes); */
-app.use('/api/v1', routes);
+//Testing
+// app.get('/', async (req: Request, res: Response, next: NextFunction) => {
+//   throw new Error('Testing Error logger')
+// })
 
-/* This code block is a middleware function that handles requests for routes that are not defined in
-the application. It sets the HTTP status code to 404 (Not Found) and returns a JSON response with an
-error message indicating that the requested API is not found. The `next()` function is called to
-pass control to the next middleware function in the stack. */
+//global error handler
+app.use(globalErrorHandler);
+
+//handle not found
 app.use((req: Request, res: Response, next: NextFunction) => {
-  const fullUrl = req.protocol + '://' + req.get('host') + req.originalUrl;
   res.status(httpStatus.NOT_FOUND).json({
-    statusCode: httpStatus.NOT_FOUND,
     success: false,
-    message: `Not Found!`,
+    message: 'Not Found',
     errorMessages: [
       {
-        path: `${fullUrl}`,
-        message: 'API Not Found!',
+        path: req.originalUrl,
+        message: 'API Not Found',
       },
     ],
   });
   next();
 });
-
-// default route
-app.get('/', (req: Request, res: Response) => {
-  res.send(`Welcome to university management auth service backend`);
-});
-
 export default app;

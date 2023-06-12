@@ -1,40 +1,15 @@
 {
-  "keep": {
-    "days": true,
-    "amount": 14
-  },
-  "auditLog": "E:\\university-management\\university-management-auth-service\\logs\\winston\\errors\\.27be878f7180f9ca182096f642e098f037e0994e-audit.json",
-  "files": [
-    {
-      "date": 1686205145249,
-      "name": "E:\\university-management\\university-management-auth-service\\logs\\winston\\errors\\phu-2023-08-06-12-error.log",
-      "hash": "c1f34701481627d58118555c181f2dadfa7e8d5176487902d153f8fed2efb38d"
+    "keep": {
+        "days": true,
+        "amount": 14
     },
-    {
-      "date": 1686291642126,
-      "name": "E:\\university-management\\university-management-auth-service\\logs\\winston\\errors\\phu-2023-09-06-12-error.log",
-      "hash": "f9cafe8b1e1f59cee15c9a4c69e50e87618ccc3fd026c457fe523e7982784be7"
-    },
-    {
-      "date": 1686370357455,
-      "name": "E:\\university-management\\university-management-auth-service\\logs\\winston\\errors\\phu-2023-10-06-10-error.log",
-      "hash": "97853286aebe54e03c0365f8c516c8d4dbd6c261e45888058b9921e5201bfe24"
-    },
-    {
-      "date": 1686378250347,
-      "name": "E:\\university-management\\university-management-auth-service\\logs\\winston\\errors\\phu-2023-10-06-12-error.log",
-      "hash": "54bd58999580c711bc386c0acc45a05859d6ade31f36a5483a36398a42bf580c"
-    },
-    {
-      "date": 1686405751129,
-      "name": "E:\\university-management\\university-management-auth-service\\logs\\winston\\errors\\phu-2023-10-06-20-error.log",
-      "hash": "37104646e8d076df1f0b4aac392aa6fa99e15658b73c988bfa71e439b678e44c"
-    },
-    {
-      "date": 1686409757294,
-      "name": "E:\\university-management\\university-management-auth-service\\logs\\winston\\errors\\phu-2023-10-06-21-error.log",
-      "hash": "987a9566a8033cd4c4ae2386b8250c7ec2f8ed47512d21cdcff4aa31ed20b1b5"
-    }
-  ],
-  "hashType": "sha256"
+    "auditLog": "E:\\university-management\\university-management-auth-service\\logs\\winston\\errors\\.27be878f7180f9ca182096f642e098f037e0994e-audit.json",
+    "files": [
+        {
+            "date": 1686546293082,
+            "name": "E:\\university-management\\university-management-auth-service\\logs\\winston\\errors\\phu-2023-12-06-11-error.log",
+            "hash": "fdfd2d273adf11257d4bc1513dd61b6903e0772073a0cbeb4961800d3ed04aae"
+        }
+    ],
+    "hashType": "sha256"
 }

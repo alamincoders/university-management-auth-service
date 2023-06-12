@@ -1,0 +1,8 @@
+Mon Jun 12 2023 11:4:53 } [PH] error: Failed to connect database The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+Mon Jun 12 2023 11:6:14 } [PH] error: Failed to connect database The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+Mon Jun 12 2023 11:12:32 } [PH] error: Failed to connect database The `uri` parameter to `openUri()` must be a string, got "undefined". Make sure the first parameter to `mongoose.connect()` or `mongoose.createConnection()` is a string.
+Mon Jun 12 2023 11:13:2 } [PH] error: listen EADDRINUSE: address already in use :::5000
+Mon Jun 12 2023 11:13:12 } [PH] error: listen EADDRINUSE: address already in use :::5000
+Mon Jun 12 2023 11:13:18 } [PH] error: listen EADDRINUSE: address already in use :::5000
+Mon Jun 12 2023 11:13:29 } [PH] error: listen EADDRINUSE: address already in use :::5000
+Mon Jun 12 2023 11:13:39 } [PH] error: listen EADDRINUSE: address already in use :::5000

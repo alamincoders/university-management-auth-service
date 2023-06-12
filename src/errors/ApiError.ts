@@ -1,5 +1,3 @@
-/* The class ApiError extends the Error class and adds a statusCode property to represent HTTP status
-codes. */
 class ApiError extends Error {
   statusCode: number;
 
