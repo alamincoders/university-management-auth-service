@@ -24,7 +24,7 @@ const createSemester = async (
   return result;
 };
 
-const getAllsemesters = async (
+const getAllSemesters = async (
   filters: IAcademicSemesterFilters,
   paginationOptions: IPaginationOptions
 ): Promise<IGenericResponse<IAcademicSemester[]>> => {
@@ -43,6 +43,13 @@ const getAllsemesters = async (
     });
   }
 
+ /* This code block is checking if there are any filters provided in the `filtersData` object. If there
+ are, it creates an `` condition for each filter and pushes it to the `andConditions` array.
+ Each `` condition is an array of objects, where each object represents a filter and its value.
+ The `Object.entries` method is used to convert the `filtersData` object into an array of key-value
+ pairs, which are then mapped to an array of objects with the key as the field and the value as the
+ filter value. This array of objects is then wrapped in an `` operator and pushed to the
+ `andConditions` array. If there are no filters provided, this code block does nothing. */
   if (Object.keys(filtersData).length) {
     andConditions.push({
       $and: Object.entries(filtersData).map(([field, value]) => ({
@@ -50,31 +57,6 @@ const getAllsemesters = async (
       })),
     });
   }
-
-  // const andConditions = [
-  //   {
-  //     $or: [
-  //       {
-  //         title: {
-  //           $regex: searchTerm,
-  //           $options: 'i',
-  //         },
-  //       },
-  //       {
-  //         code: {
-  //           $regex: searchTerm,
-  //           $options: 'i',
-  //         },
-  //       },
-  //       {
-  //         year: {
-  //           $regex: searchTerm,
-  //           $options: 'i',
-  //         },
-  //       },
-  //     ],
-  //   },
-  // ];
 
   const { page, limit, skip, sortBy, sortOrder } =
     paginationHelpers.calculatePagination(paginationOptions);
@@ -84,10 +66,10 @@ const getAllsemesters = async (
   if (sortBy && sortOrder) {
     sortConditions[sortBy] = sortOrder;
   }
-  const whereConditons =
+  const whereConditions =
     andConditions.length > 0 ? { $and: andConditions } : {};
 
-  const result = await AcademicSemester.find(whereConditons)
+  const result = await AcademicSemester.find(whereConditions)
     .sort(sortConditions)
     .skip(skip)
     .limit(limit);
@@ -138,8 +120,33 @@ const deleteSemester = async (
 
 export const AcademicSemesterService = {
   createSemester,
-  getAllsemesters,
+  getAllSemesters,
   getSingleSemester,
   updateSemester,
   deleteSemester,
 };
+
+// const andConditions = [
+//   {
+//     $or: [
+//       {
+//         title: {
+//           $regex: searchTerm,
+//           $options: 'i',
+//         },
+//       },
+//       {
+//         code: {
+//           $regex: searchTerm,
+//           $options: 'i',
+//         },
+//       },
+//       {
+//         year: {
+//           $regex: searchTerm,
+//           $options: 'i',
+//         },
+//       },
+//     ],
+//   },
+// ];
