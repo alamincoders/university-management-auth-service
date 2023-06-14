@@ -14,11 +14,23 @@ import {
 } from './academicSemester.interface';
 import { AcademicSemester } from './academicSemester.model';
 
-const getAllSemesters = async (
+const createSemester = async (
+  payload: IAcademicSemester
+): Promise<IAcademicSemester> => {
+  if (academicSemesterTitleCodeMapper[payload.title] !== payload.code) {
+    throw new ApiError(httpStatus.BAD_REQUEST, 'Invalid Semester Code');
+  }
+  const result = await AcademicSemester.create(payload);
+  return result;
+};
+
+const getAllsemesters = async (
   filters: IAcademicSemesterFilters,
   paginationOptions: IPaginationOptions
 ): Promise<IGenericResponse<IAcademicSemester[]>> => {
   const { searchTerm, ...filtersData } = filters;
+  const { page, limit, skip, sortBy, sortOrder } =
+    paginationHelpers.calculatePagination(paginationOptions);
 
   const andConditions = [];
 
@@ -41,8 +53,30 @@ const getAllSemesters = async (
     });
   }
 
-  const { page, limit, skip, sortBy, sortOrder } =
-    paginationHelpers.calculatePagination(paginationOptions);
+  // const andConditions = [
+  //   {
+  //     $or: [
+  //       {
+  //         title: {
+  //           $regex: searchTerm,
+  //           $options: 'i',
+  //         },
+  //       },
+  //       {
+  //         code: {
+  //           $regex: searchTerm,
+  //           $options: 'i',
+  //         },
+  //       },
+  //       {
+  //         year: {
+  //           $regex: searchTerm,
+  //           $options: 'i',
+  //         },
+  //       },
+  //     ],
+  //   },
+  // ];
 
   const sortConditions: { [key: string]: SortOrder } = {};
 
@@ -76,16 +110,6 @@ const getSingleSemester = async (
   return result;
 };
 
-const createSemester = async (
-  payload: IAcademicSemester
-): Promise<IAcademicSemester> => {
-  if (academicSemesterTitleCodeMapper[payload.title] !== payload.code) {
-    throw new ApiError(httpStatus.BAD_REQUEST, 'Invalid Semester Code');
-  }
-  const result = await AcademicSemester.create(payload);
-  return result;
-};
-
 const updateSemester = async (
   id: string,
   payload: Partial<IAcademicSemester>
@@ -113,33 +137,8 @@ const deleteSemester = async (
 
 export const AcademicSemesterService = {
   createSemester,
-  getAllSemesters,
+  getAllsemesters,
   getSingleSemester,
   updateSemester,
   deleteSemester,
 };
-
-// const andConditions = [
-//   {
-//     $or: [
-//       {
-//         title: {
-//           $regex: searchTerm,
-//           $options: 'i',
-//         },
-//       },
-//       {
-//         code: {
-//           $regex: searchTerm,
-//           $options: 'i',
-//         },
-//       },
-//       {
-//         year: {
-//           $regex: searchTerm,
-//           $options: 'i',
-//         },
-//       },
-//     ],
-//   },
-// ];
