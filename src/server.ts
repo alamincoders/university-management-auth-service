@@ -2,10 +2,10 @@ import { Server } from 'http';
 import mongoose from 'mongoose';
 import app from './app';
 import config from './config/index';
-import { errorLogger, logger } from './shared/logger';
+import { errorlogger, logger } from './shared/logger';
 
 process.on('uncaughtException', error => {
-  errorLogger.error(error);
+  errorlogger.error(error);
   process.exit(1);
 });
 
@@ -20,13 +20,13 @@ async function bootstrap() {
       logger.info(`Application  listening on port ${config.port}`);
     });
   } catch (err) {
-    errorLogger.error('Failed to connect database', err);
+    errorlogger.error('Failed to connect database', err);
   }
 
   process.on('unhandledRejection', error => {
     if (server) {
       server.close(() => {
-        errorLogger.error(error);
+        errorlogger.error(error);
         process.exit(1);
       });
     } else {

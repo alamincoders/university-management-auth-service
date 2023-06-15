@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/no-unused-vars */
 /* eslint-disable no-unused-vars */
 /* eslint-disable no-console */
 /* eslint-disable no-unused-expressions */
@@ -11,7 +10,7 @@ import { ZodError } from 'zod';
 import handleCastError from '../../errors/handleCastError';
 import handleZodError from '../../errors/handleZodError';
 import { IGenericErrorMessage } from '../../interfaces/error';
-import { errorLogger } from '../../shared/logger';
+import { errorlogger } from '../../shared/logger';
 
 const globalErrorHandler: ErrorRequestHandler = (
   error,
@@ -21,7 +20,7 @@ const globalErrorHandler: ErrorRequestHandler = (
 ) => {
   config.env === 'development'
     ? console.log(`🐱‍🏍 globalErrorHandler ~~`, { error })
-    : errorLogger.error(`🐱‍🏍 globalErrorHandler ~~`, error);
+    : errorlogger.error(`🐱‍🏍 globalErrorHandler ~~`, error);
 
   let statusCode = 500;
   let message = 'Something went wrong !';

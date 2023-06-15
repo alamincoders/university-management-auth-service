@@ -4,7 +4,7 @@ import { createLogger, format, transports } from 'winston';
 import DailyRotateFile from 'winston-daily-rotate-file';
 const { combine, timestamp, label, printf } = format;
 
-//Custom Log Format
+//Customm Log Format
 
 const myFormat = printf(({ level, message, label, timestamp }) => {
   const date = new Date(timestamp);
@@ -35,7 +35,7 @@ const logger = createLogger({
   ],
 });
 
-const errorLogger = createLogger({
+const errorlogger = createLogger({
   level: 'error',
   format: combine(label({ label: 'error' }), timestamp(), myFormat),
   transports: [
@@ -56,4 +56,4 @@ const errorLogger = createLogger({
   ],
 });
 
-export { errorLogger, logger };
+export { errorlogger, logger };
