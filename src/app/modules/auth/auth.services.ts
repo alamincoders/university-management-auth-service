@@ -1,11 +1,12 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import httpStatus from 'http-status';
+import { Secret } from 'jsonwebtoken';
+import config from '../../../config';
 import ApiError from '../../../errors/ApiError';
+import { jwtHelpers } from '../../../helpers/jwtHelpers';
 import { User } from '../user/user.model';
-import { ILoginUser } from './auth.interface';
-import  jwt from 'jsonwebtoken';
+import { ILoginUser, ILoginUserResponse } from './auth.interface';
 
-const loginUser = async (payload: ILoginUser) => {
+const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
   const { id, password } = payload;
   const user = new User();
 
@@ -25,12 +26,33 @@ const loginUser = async (payload: ILoginUser) => {
 
   // create access token & refresh token with jwt
 
- /*  const accessToken = jwt.sign({
-    id: id,
-    role: isUserExist?.role
-  }, "j") */
+  const { id: userId, role, needsPasswordChange } = isUserExist;
 
-  return {};
+  const accessToken = jwtHelpers.createToken(
+    {
+      id: userId,
+      role,
+    },
+    config.jwt.access_token as Secret,
+    config.jwt.access_expires as string
+  );
+  const refreshToken = jwtHelpers.createToken(
+    {
+      id: userId,
+      role,
+    },
+    config.jwt.refresh_token as Secret,
+    config.jwt.refresh_expires as string
+  );
+
+  // eslint-disable-next-line no-console
+  console.log(accessToken, refreshToken, needsPasswordChange);
+
+  return {
+    accessToken,
+    refreshToken,
+    needsPasswordChange,
+  };
 };
 
 export const AuthServices = {
