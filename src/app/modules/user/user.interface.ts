@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 import { Model, Types } from 'mongoose';
 import { IAdmin } from '../admin/admin.interface';
 import { IFaculty } from '../faculty/faculty.interface';
@@ -14,7 +15,7 @@ export type IUser = {
 };
 
 export type IUserMethods = {
-  isPasswordExist(id: string): Promise<boolean>;
+  isUserExist(id: string): Promise<Partial<IUser> | null>;
   isPasswordMatch(
     givenPassword: string,
     savedPassword: string
