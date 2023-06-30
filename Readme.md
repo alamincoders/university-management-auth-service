@@ -1,1 +1,1 @@
-## University Management Auth Services -- Backend
+## University Management Auth Service -- Backend 
