@@ -11,6 +11,8 @@ const createStudent: RequestHandler = catchAsync(
     const { student, ...userData } = req.body;
     const result = await UserService.createStudent(student, userData);
 
+    console.log(req.cookies, 'cookies');
+
     sendResponse<IUser>(res, {
       statusCode: httpStatus.OK,
       success: true,
