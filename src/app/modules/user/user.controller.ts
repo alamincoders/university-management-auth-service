@@ -11,13 +11,10 @@ const createStudent: RequestHandler = catchAsync(
     const { student, ...userData } = req.body;
     const result = await UserService.createStudent(student, userData);
 
-    // eslint-disable-next-line no-console
-    console.log(req.cookies, 'cookies');
-
     sendResponse<IUser>(res, {
       statusCode: httpStatus.OK,
       success: true,
-      message: 'user created successfully!',
+      message: 'Student created successfully!',
       data: result,
     });
   }
@@ -31,7 +28,7 @@ const createFaculy: RequestHandler = catchAsync(
     sendResponse<IUser>(res, {
       statusCode: httpStatus.OK,
       success: true,
-      message: 'user created successfully!',
+      message: 'Faculty created successfully!',
       data: result,
     });
   }

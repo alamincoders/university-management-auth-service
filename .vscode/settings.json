@@ -4,5 +4,5 @@
     "source.fixAll.tslint": true,
     "source.organizeImports": true
   },
-  "cSpell.words": ["middlewares"]
+  "cSpell.words": ["errorlogger"]
 }

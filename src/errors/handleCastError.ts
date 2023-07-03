@@ -1,4 +1,3 @@
-/* eslint-disable @typescript-eslint/explicit-module-boundary-types */
 import mongoose from 'mongoose';
 import { IGenericErrorMessage } from '../interfaces/error';
 
