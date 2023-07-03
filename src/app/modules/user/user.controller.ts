@@ -11,6 +11,7 @@ const createStudent: RequestHandler = catchAsync(
     const { student, ...userData } = req.body;
     const result = await UserService.createStudent(student, userData);
 
+    // eslint-disable-next-line no-console
     console.log(req.cookies, 'cookies');
 
     sendResponse<IUser>(res, {

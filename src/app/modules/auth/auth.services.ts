@@ -45,9 +45,6 @@ const loginUser = async (payload: ILoginUser): Promise<ILoginUserResponse> => {
     config.jwt.refresh_expires as string
   );
 
-  // eslint-disable-next-line no-console
-  console.log(accessToken, refreshToken, needsPasswordChange);
-
   return {
     accessToken,
     refreshToken,
