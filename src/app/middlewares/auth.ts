@@ -22,6 +22,10 @@ const auth =
       req.user = verifiedUser; // role  , userid
 
       // role diye guard korar jnno
+
+      /* The code block `if (requiredRoles.length && !requiredRoles.includes(verifiedUser.role))` is
+     checking if the `requiredRoles` array is not empty and if the `verifiedUser.role` is not
+     included in the `requiredRoles` array. */
       if (requiredRoles.length && !requiredRoles.includes(verifiedUser.role)) {
         throw new ApiError(httpStatus.FORBIDDEN, 'Forbidden');
       }

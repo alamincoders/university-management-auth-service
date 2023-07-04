@@ -76,7 +76,7 @@ UserSchema.pre('save', async function (next) {
   const user = this;
   user.password = await bcrypt.hash(
     user.password,
-    Number(config.bycrypt_salt_rounds)
+    Number(config.bcrypt_salt_rounds)
   );
 
   if (!user.needsPasswordChange) {
